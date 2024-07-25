@@ -1,0 +1,63 @@
+*{
+  background-color: bisque;
+}
+
+div, button {
+  padding: 5px 10px;
+  margin: 5px 0px;
+}
+
+p {
+  font-size: large;
+}
+
+button {
+  border: peru;
+  border-radius: 25%;
+}
+
+.heading{
+  font-family: 'Courier New', Courier, monospace;
+  color: rgba(128, 34, 0, 0.863);
+}
+
+
+.body{
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.img {
+  width: 15%;
+  height: 15%;
+}
+
+#auth-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  padding-top: 50px;
+}
+
+#auth-form {
+  height: 70vh;
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  border: 1px solid darkred;
+  margin: 25px;
+}
+
+#auth-form > input {
+  width: 300px;
+  height: 40px;
+  padding: 10px;
+}
+
+button {
+  height: 40px;
+  width: 150px;
+}
