@@ -14,6 +14,18 @@ recipeRouter.get("/", async(req, res, next) => {
     }
 })
 
+// get by user
+recipeRouter.get("/user", async (req, res, next) =>
+    {
+        try {
+            const foundRecipes = await Recipe.find({userId: req.auth._id})
+            return res.status(200).send(foundRecipes)
+        } catch (error) {
+            res.status(500)
+            return next(error)
+        }
+    })
+
 // get by main ingredient
 recipeRouter.get("/mainIngredient", async(req, res, next) => {
     try {

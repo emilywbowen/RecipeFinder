@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios"
 
 export const UserContext = React.createContext()
@@ -11,15 +11,21 @@ userAxios.interceptors.request.use(config => {
     return config
 })
 
+
 export default function UserProvider(props){
 
     const initState = {
         user : JSON.parse(localStorage.getItem("user")) || {},
         token : localStorage.getItem("token") || "",
+        allRecipes: [],
+        recipes: []
 
     }
 
     const [userState, setUserState] = useState(initState)
+    const [recipes, setRecipes] = useState([])
+    // const [recipeState, setRecipeState] = useState([])
+
 
     async function signup(creds) {
         try {
@@ -127,6 +133,67 @@ export default function UserProvider(props){
         }
     }
 
+
+    // function getRecipes(){
+    //     axios.get("/api/recipes")
+    //     .then(res => setRecipes(res.data))
+    //     .catch(err => console.log(err.response.data.errMsg))
+    // }
+//     useEffect(() => {
+//       getRecipes()
+//   }, [])
+
+// get all
+  async function getRecipes(){
+    try {
+        const res = await userAxios.get("/api/recipes")
+        setRecipes(res.data)
+    } catch (error) {
+        console.log(error)
+    }
+  }
+// get by user
+
+  async function getUserRecipes() {
+    try {
+        const res = await userAxios.get("/api/recipes/user")
+        setUserState(prevState => {
+            return {
+                ...prevState,
+                recipes: res.data
+            }
+        })
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
+// post
+//   function addRecipe(newRecipe){
+//     axios.post('/api/recipes', newRecipe)
+//     .then(res => setRecipes(prevRecipes => [...prevRecipes, res.data]))
+//     .catch(err => console.log(err))
+//   }
+
+  async function addRecipe(newRecipe){
+    try {
+        await userAxios.post("/api/recipes", newRecipe)
+        getRecipes()
+        // setRecipes(prevState => {
+        //     return{
+        //         ...prevState,
+                // recipes: [...prevState.recipes, res.data]
+        //     }
+        // })
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
+//   edit
+
+// delete
+
     return(
         <UserContext.Provider value = {{
             ...userState,
@@ -136,7 +203,12 @@ export default function UserProvider(props){
             handleAuthErr,
             resetAuthErr, 
             handleUpvote,
-            handleDownvote
+            handleDownvote,
+            getRecipes,
+            recipes,
+            addRecipe,
+            getUserRecipes 
+        
         }}>
 
         {props.children}

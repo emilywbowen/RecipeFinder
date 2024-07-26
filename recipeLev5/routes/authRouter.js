@@ -7,15 +7,15 @@ authRouter.post("/signup", async(req, res, next) => {
     try {
         const user = await User.findOne({username: req.body.username})
         if(user){
-            res.status(new Error("Username already exists"))
+            res.status(new Error(`Username is taken`))
         }
         const newUser = new User(req.body)
         const savedUser = await newUser.save()
         const token = jwt.sign(savedUser.withoutPassword(), process.env.SECRET)
-        res.status(201).send({user: savedUser.withoutPassword(), token})
+        return res.status(201).send({user: savedUser.withoutPassword(), token})
     } catch (error) {
         res.status(500)
-        return next (new Error("Username already exists"))
+        return next (error)
     }
 })
 

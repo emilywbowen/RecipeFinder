@@ -14,6 +14,9 @@ return(
      <button>About</button> 
      </Link>
 
+     <Link to="/allRecipes" style={{padding: 5}}>
+     <button>All Recipes</button></Link>
+
      <Link to="/search" style={{padding: 5}}> 
      <button>Recipe Search</button> 
      </Link>
@@ -28,3 +31,4 @@ return(
 
    )
 }
+{/* <Route path="/allRecipes" element={<AllRecipes />}/> */}

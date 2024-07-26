@@ -1,17 +1,17 @@
 import React, {useState, useEffect, useContext} from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import About from './components/About';
 import Home from './components/Home';
-// import RecipeSearch from "./components/RecipeSearch";
+import SubmitRecipe from "./components/UserRecipes"
+
 import UserProfile from "./components/UserProfile";
 import AllRecipes from "./components/AllRecipes";
 import SearchByCategory from "./components/SearchByCategory"
-// import SearchByIngredient from './components/notInUse/SearchByIngredient';
+import Auth from './components/Auth';
+
 import NavBar from "./components/NavBar";
-// import RecipeForm from './components/RecipeForm';
-// import axios from 'axios';
-// import SubmitRecipe from './components/notInUse/SubmitRecipe';
+
 import { UserContext } from './context/UserProvider';
 
 
@@ -37,78 +37,23 @@ export default function App() {
 
     return (
     <>
+      <Router>
       {token && <NavBar logout = {logout}/>}
-      
-        <Routes>
-          <Route path='/' element={<Home />}/>  
 
-          <Route path="/user" element={token ? <Navigate to ="/profile"/> : <Auth />} 
-          // {<UserProfile />}
-          />
-          
+        <Routes>
+          <Route path='/' element={token ? <Navigate to ="/profile"/> : <Auth />}/>  
           <Route path='/about' element={<About />}/>
-          <Route path="/allRecipes" element={<AllRecipes recipes={recipes}/>}/>
-          <Route path='/searchByCategory' element={<SearchByCategory recipes={recipes}/>}/>
           <Route path='/profile' element={<UserProfile />}/>
-          <Route path= "/submitRecipe" element={<SubmitRecipe addRecipe={addRecipe}/>}/>
+          
+          <Route path="/allRecipes" element={<AllRecipes />}/>
+          <Route path='/searchByCategory' element={<SearchByCategory />}/>
+       
+          <Route path= "/submitRecipe" element={<SubmitRecipe />}/>
           {/* <Route path="/nav" element={<NavBar />}/> */}
           
         </Routes>
-
+        </Router>
       </>
     );
 }
-
-
-
-
-
-
-
-
-// import React from 'react'
-// import './App.css'
-// import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-// import About from './components/About'
-// import Home from './components/Home'
-// import RecipeSearch from "./components/RecipeSearch"
-// import UserProfile from "./components/UserProfile"
-// import NavBar from "./components/NavBar"
-// import {ContextProvider} from './components/ContextProvider'
-
-
-// export default function App(props) {
-
-// //   const {randomRecipe,  
-// //     getRandomRecipe, 
-// //  } = useContext(Context);
-
-//   return (
-// <ContextProvider>
-// <nav style={{margin: 10}}>
-//       <Link to="/" style={{padding: 5}}> 
-//       Home 
-//       </Link>
-//       <Link to="/about" style={{padding: 5}}> 
-//       About
-//       </Link>
-//       <Link to="/search" style={{padding: 5}}> 
-//       Recipe Search 
-//       </Link>
-//       <Link to="/user" style={{padding: 5}}> 
-//       Profile
-//       </Link>
-//     </nav>
-
-//   <Routes>
-//     <Route path='/' element={<Home />}/>
-//     <Route path='/about' element={<About />}/>
-//     <Route path='/search' element={<RecipeSearch />}/>
-//     <Route path='/user' element={<UserProfile />}/>
-//     <Route Path="/nav" element={<NavBar />}/>
-//   </Routes>
-// </ContextProvider>
-        
-//   )
-// }
 

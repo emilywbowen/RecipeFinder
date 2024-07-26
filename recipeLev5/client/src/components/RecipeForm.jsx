@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import RecipeSearch from "./RecipeSearch";
+import { UserContext } from "../context/UserProvider";
 
 export default function RecipeForm(props) {
+  const {addRecipe} = useContext(UserContext)
+
   const initInputs = {
     title: props.title || "",
     category: props.category || "",
@@ -12,10 +15,11 @@ export default function RecipeForm(props) {
     mainIngredient: props.mainIngredient || "",
     ingredientList: props.ingredientList || "",
     directions: props.directions || "",
-    imgUrl: props.imgUrl || "",
+    imgUrl: props.imgUrl || ""
   };
 
   const [inputs, setInputs] = useState(initInputs);
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -26,10 +30,14 @@ export default function RecipeForm(props) {
   }
 
   function handleSubmit(e) {
+    
     e.preventDefault();
     console.log(inputs);
     props.submit(inputs, props._id);
-    setInputs(initInputs);
+    addRecipe(inputs),
+    setInputs(initInputs); 
+    setIsSubmitted(true)
+    console.log("Handled properly")
   }
 
   return (

@@ -1,14 +1,18 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import Save from "./Save";
 import {UserContext} from "../context/UserProvider"
+import RecipeForm from "./RecipeForm";
+import UserRecipeContainer from "./UserRecipeContainer";
+import UserRecipes from "./UserRecipes";
 
 export default function UserProfile(){
-    const {login, signup, errMsg, resetAuthErr, user, getUserRecipes} = useContext(UserContext)
+    const {getUserRecipes, user, addRecipe, userState} = useContext(UserContext)
 
     useEffect(() =>{
         getUserRecipes()
 
     }, [])
+    console.log(userState)
 
     return(
         <div>
@@ -17,9 +21,17 @@ export default function UserProfile(){
             <h1 className="body">Submit your own recipe!</h1>
             <RecipeForm submit={addRecipe} btnText="Submit"/>
             
-
+        <div>
             <h1 className="body">Your recipes are below!</h1>
-            <RecipeList recipes = {recipes}/>
+            {userState !== null ? (
+                <UserRecipeContainer recipes = {userState} />
+            ):
+            (
+                <p>Loading Recipes...yum</p>
+            )}
+        </div>
+
+            {/* <RecipeList recipes = {recipes}/> */}
         </div>
     )
 }

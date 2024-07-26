@@ -39,6 +39,10 @@ const recipeSchema = new Schema({
     },
     imgUrl: {
         type: String
+    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     }
 })
 
