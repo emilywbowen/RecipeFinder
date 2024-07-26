@@ -34,7 +34,7 @@ export default function RecipeForm(props) {
     e.preventDefault();
     console.log(inputs);
     props.submit(inputs, props._id);
-    addRecipe(inputs),
+    // addRecipe(inputs),
     setInputs(initInputs); 
     setIsSubmitted(true)
     console.log("Handled properly")

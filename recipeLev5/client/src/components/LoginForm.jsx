@@ -29,12 +29,14 @@ export default function LoginForm(props) {
             <input
             placeholder="username"
             name="username"
+            type="text"
             value={formData.username}
             onChange={handleChange}
             />
             <input
             placeholder="password"
             name="password"
+            type="password"
             value={formData.password}
             onChange={handleChange}
             />

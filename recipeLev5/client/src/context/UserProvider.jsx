@@ -18,7 +18,7 @@ export default function UserProvider(props){
         user : JSON.parse(localStorage.getItem("user")) || {},
         token : localStorage.getItem("token") || "",
         allRecipes: [],
-        recipes: []
+        userRecipes: []
 
     }
 
@@ -109,7 +109,7 @@ export default function UserProvider(props){
             setUserState(prevUserState => {
                 return{
                     ...prevUserState,
-                    recipes: prevUserState.recipes.map(recipe => recipe._id === recipeId ? res.data: recipe)
+                    userRecipes: prevUserState.recipes.map(recipe => recipe._id === recipeId ? res.data: recipe)
                 }
             })
         } catch (error) {
@@ -125,7 +125,7 @@ export default function UserProvider(props){
             setUserState(prevUserState => {
                 return{
                     ...prevUserState,
-                    recipes: prevUserState.recipes.map(recipe => recipe._id === recipeId ? res.data: recipe)
+                    userRecipes: prevUserState.recipes.map(recipe => recipe._id === recipeId ? res.data: recipe)
                 }
             })
         } catch (error) {
@@ -157,10 +157,11 @@ export default function UserProvider(props){
   async function getUserRecipes() {
     try {
         const res = await userAxios.get("/api/recipes/user")
+        console.log(res.data)
         setUserState(prevState => {
             return {
                 ...prevState,
-                recipes: res.data
+                userRecipes: res.data
             }
         })
     } catch (error) {
@@ -177,14 +178,15 @@ export default function UserProvider(props){
 
   async function addRecipe(newRecipe){
     try {
-        await userAxios.post("/api/recipes", newRecipe)
-        getRecipes()
-        // setRecipes(prevState => {
-        //     return{
-        //         ...prevState,
-                // recipes: [...prevState.recipes, res.data]
-        //     }
-        // })
+        const res = await userAxios.post("/api/recipes", newRecipe)
+        // getRecipes()
+        setRecipes(prevState => [...prevState, res.data])
+        setUserState(prevState => {
+            return {
+                ...prevState, 
+                userRecipes: [...prevState.userRecipes, res.data]
+            }
+        })
     } catch (error) {
         console.log(error)
     }

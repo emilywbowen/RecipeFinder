@@ -21,7 +21,7 @@ return(
      <button>Recipe Search</button> 
      </Link>
 
-     <Link to="/user" style={{padding: 5}}> 
+     <Link to="/profile" style={{padding: 5}}> 
      <button>Profile</button> 
      </Link>
 

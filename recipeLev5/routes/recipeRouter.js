@@ -66,6 +66,7 @@ recipeRouter.get("/area", async(req, res, next) => {
 // post new recipe
 recipeRouter.post("/", async(req, res, next) => {
     try {
+        req.body.userId = req.auth._id
         const newRecipe = new Recipe(req.body)
         const savedRecipe = await newRecipe.save()
         return res.status(201).send(savedRecipe)

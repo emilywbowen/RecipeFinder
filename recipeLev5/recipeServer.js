@@ -31,7 +31,7 @@ connectToDatabase()
 
 // routes
 app.use("/api/auth", require("./routes/authRouter.js"))
-app.use("/api/main", expressjwt({secret: process.env.SECRET, algorithms: ["HS256"]}))
+app.use("/api", expressjwt({secret: process.env.SECRET, algorithms: ["HS256"]}))
 app.use("/api/recipes", require("./routes/recipeRouter.js"))
 
 app.use((err, req, res, next) => {

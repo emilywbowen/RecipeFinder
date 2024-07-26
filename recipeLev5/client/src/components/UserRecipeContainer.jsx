@@ -6,13 +6,13 @@ import UserRecipes from "./UserRecipes";
 
 
 export default function UserRecipeContainer(){
-    const {userState} = useContext(UserContext)
-    console.log(userState)
+    const {userRecipes} = useContext(UserContext)
+    console.log(userRecipes)
 
     return (
         <>
             <h1>Help</h1>
-            {userState.map(recipe => (
+            {userRecipes.map(recipe => (
                 <UserRecipes {...recipe} key = {recipe._id}/>
             ))}
             {/* <UserRecipes /> */}

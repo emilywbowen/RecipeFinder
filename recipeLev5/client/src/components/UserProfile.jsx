@@ -6,13 +6,13 @@ import UserRecipeContainer from "./UserRecipeContainer";
 import UserRecipes from "./UserRecipes";
 
 export default function UserProfile(){
-    const {getUserRecipes, user, addRecipe, userState} = useContext(UserContext)
+    const {getUserRecipes, user, addRecipe, userRecipes} = useContext(UserContext)
 
     useEffect(() =>{
         getUserRecipes()
 
     }, [])
-    console.log(userState)
+    console.log(userRecipes)
 
     return(
         <div>
@@ -23,14 +23,14 @@ export default function UserProfile(){
             
         <div>
             <h1 className="body">Your recipes are below!</h1>
-            {userState !== null ? (
-                <UserRecipeContainer recipes = {userState} />
+            {userRecipes.length !== 0 ? (
+                <UserRecipeContainer recipes = {userRecipes} />
             ):
             (
-                <p>Loading Recipes...yum</p>
+                <p>Sad face, no recipes</p>
             )}
         </div>
-
+            
             {/* <RecipeList recipes = {recipes}/> */}
         </div>
     )
