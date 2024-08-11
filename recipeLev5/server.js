@@ -4,10 +4,12 @@ const morgan = require("morgan")
 require ("dotenv").config()
 const mongoose = require("mongoose")
 const {expressjwt} = require("express-jwt")
+const path = require("path")
 
 // middleware
 app.use(express.json())
 app.use(morgan("dev"))
+app.use(express.static(path.join(__dirname, "client", "dist")))
 
 
 
@@ -42,7 +44,7 @@ app.use((err, req, res, next) => {
     return res.send({errMsg: err.message})
 })
 
-
+app.get("*", (req, res) => res.sendFile(path.join(__dirname, "client", "dist", "index.html")))
 // listen
 
 app.listen(process.env.PORT, () => {
