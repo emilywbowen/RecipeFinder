@@ -11,7 +11,6 @@ export default function UserRecipeContainer(){
 
     return (
         <>
-            <h1>Help</h1>
             {userRecipes.map(recipe => (
                 <UserRecipes {...recipe} key = {recipe._id}/>
             ))}

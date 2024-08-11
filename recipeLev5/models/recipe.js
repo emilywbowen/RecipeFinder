@@ -4,15 +4,15 @@ const Schema = mongoose.Schema
 const recipeSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     category: {
         type: String,
         required: true
     },
     area: {
-        type: String,
-        required: true
+        type: String
     },
     difficulty: {
         type: String
@@ -22,8 +22,8 @@ const recipeSchema = new Schema({
         required: true
     },
     feeds: {
-        type: Number,
-        required: true
+        type: String
+        
     },
     mainIngredient: {
         type: String,

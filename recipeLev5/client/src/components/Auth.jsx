@@ -8,7 +8,7 @@ export default function Auth(){
     const [isMember, setIsMember] = useState(false)
 
     const toggleForm = () => {
-        setIsMember(!isMember)
+        setIsMember(prev => !prev)
         resetAuthErr()
     }
 
@@ -24,7 +24,7 @@ export default function Auth(){
                 submit = {login}
                 errMst = {errMsg}/>
 
-                <button onCLick = {toggleForm} >Create an Account?</button>
+                <button onClick = {toggleForm} >Create an Account?</button>
                 </>
 
                 :

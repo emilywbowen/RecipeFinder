@@ -16,11 +16,12 @@ export default function LoginForm(props) {
             }
         })
     }
-
+    console.log(isMember)
     function handleSubmit(e){
         e.preventDefault()
         submit(formData)
     }
+    
 
     return (
         <form name = "auth-form" id = "auth-form" onSubmit={handleSubmit}>
