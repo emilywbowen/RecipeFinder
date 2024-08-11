@@ -5,7 +5,10 @@ export default function About(props){
    
     return(
         <div>
-            <h1 className="heading">Welcome to "Not Your Grandma's Cookbook!</h1>
+            <h1 className="heading">Welcome to "Not Your Grandma's Cookbook"!</h1>
+
+            <h2 className="body">Do you miss having Grandma's old cookbook within arms reach? Have you done the Marie Kondo method and reduced your books to 5? This website is for you! Submit your favorite recipe or search countless others!</h2>
+
             <h2 className="body">
                 
                 
