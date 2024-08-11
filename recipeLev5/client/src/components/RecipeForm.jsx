@@ -46,6 +46,7 @@ export default function RecipeForm(props) {
         type="text"
         name="title"
         value={inputs.title}
+        required={true}
         onChange={handleChange}
         placeholder="Recipe Title"
       />
@@ -54,6 +55,7 @@ export default function RecipeForm(props) {
         type="text"
         name="category"
         value={inputs.category}
+        required={true}
         onChange={handleChange}
         placeholder="Recipe Category (ex: vegetarian, kid-friendly, etc)"
       >
@@ -95,6 +97,7 @@ export default function RecipeForm(props) {
         type="text"
         name="time"
         value={inputs.time}
+        required={true}
         onChange={handleChange}
         placeholder="Estimated time"
       />
@@ -103,6 +106,7 @@ export default function RecipeForm(props) {
         type="text"
         name="mainIngredient"
         value={inputs.mainIngredient}
+        required={true}
         onChange={handleChange}
         placeholder="Main Ingredient"
       />
@@ -111,6 +115,7 @@ export default function RecipeForm(props) {
         type="text"
         name="ingredientList"
         value={inputs.ingredientList}
+        required={true}
         onChange={handleChange}
         placeholder="Ingredients and measurements"
       />
@@ -119,6 +124,7 @@ export default function RecipeForm(props) {
         type="text"
         name="directions"
         value={inputs.directions}
+        required={true}
         onChange={handleChange}
         placeholder="Recipe Directions"
       />
